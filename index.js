@@ -6,16 +6,15 @@ let timer2s="0"
 let timer2ms="0"
 let timer1="0"
 let timer2="0"
+let start=false
+let firstclick=false
 let timer
 
 function starttimer(time){
 	if(0<time){
-		timer1m=parseInt(document.getElementById("timer1m").value)
-		timer1s=parseInt(document.getElementById("timer1s").value)
-		timer1ms=0
-		timer2m=parseInt(document.getElementById("timer2m").value)
-		timer2s=parseInt(document.getElementById("timer2s").value)
-		timer2ms=0
+		if(timer){
+			clearInterval(timer) // 如果有，先清除舊的計時器
+		}
 
 		timer=setInterval(function(){
 			if(0<timer1m||0<timer1s||0<timer1ms){
@@ -61,11 +60,42 @@ function starttimer(time){
 				document.getElementById("timer1").style.color="white"
 				clearInterval(timer)
 				starttimer(time-1)
+				firstclick=false
 			}
 		},10)
 	}
 }
 
 document.getElementById("start").onclick=function(){
-	starttimer(parseInt(document.getElementById("time").value))
+	if(!start){
+		if(!firstclick){
+			timer1m=parseInt(document.getElementById("timer1m").value)
+			timer1s=parseInt(document.getElementById("timer1s").value)
+			timer1ms=0
+			timer2m=parseInt(document.getElementById("timer2m").value)
+			timer2s=parseInt(document.getElementById("timer2s").value)
+			timer2ms=0
+
+			firstclick=true
+		}
+
+		starttimer(parseInt(document.getElementById("time").value))
+		document.getElementById("start").value="停止"
+		start=true
+	}else{
+		clearInterval(timer)
+		document.getElementById("start").value="開始"
+		start=false
+	}
+}
+
+document.getElementById("reset").onclick=function(){
+	if(confirm("確定要重置嗎?"))
+		location.reload()
+}
+
+document.onkeydown=function(event){
+	if(event.target.id!="time"&&event.target.id!="timer1m"&&event.target.id!="timer1s"&&event.target.id!="timer2m"&&event.target.id!="timer2s"){
+		document.getElementById("start").click()
+	}
 }

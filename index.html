@@ -14,6 +14,10 @@
 				color: red;
 				text-align: center;
 			}
+			input[type="button"]{
+				font-size: 20px;
+				cursor: pointer;
+			}
 		</style>
 	</head>
 	<body>
@@ -30,11 +34,11 @@
 				<input type="number" id="timer2m" value="4">m <input type="number" id="timer2s" value="0">s
 			</div>
 
+			<input type="button" id="reset" value="重設">
 			<input type="button" id="start" value="開始">
 		</div>
 
 		<div class="timer" id="timer1">01:00.00</div>
-		<!-- <div class="timer" id="timer2">40:00.000</div> -->
 
 		<script src="index.js"></script>
 	</body>
