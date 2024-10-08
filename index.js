@@ -48,7 +48,7 @@ function starttimer(time){
 				}else{
 					timer2ms=timer2ms-1
 				}
-				document.getElementById("timer1").style.color="black"
+				document.getElementById("timer1").style.color="white"
 				document.getElementById("timer1").innerHTML=`
 					${String(timer2m).padStart(2,"0")}:${String(timer2s).padStart(2,"0")}.${String(timer2ms).padStart(2,"0")}
 				`
@@ -58,7 +58,7 @@ function starttimer(time){
 						計時結束!
 					`
 				}
-				document.getElementById("timer1").style.color="black"
+				document.getElementById("timer1").style.color="white"
 				clearInterval(timer)
 				starttimer(time-1)
 			}
