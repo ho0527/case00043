@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<style>
+			.timer{
+				font-size: 400px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>
+				跑 <input type="number" id="time" value="1"> 次
+			</div>
+			<div>
+				計時器一
+				<input type="number" id="timer1m" value="1">m <input type="number" id="timer1s" value="0">s
+			</div>
+			<div>
+				計時器二
+				<input type="number" id="timer2m" value="4">m <input type="number" id="timer2s" value="0">s
+			</div>
+
+			<input type="button" id="start" value="開始">
+		</div>
+
+		<div class="timer" id="timer1">01:00.00</div>
+		<!-- <div class="timer" id="timer2">40:00.000</div> -->
+
+		<script src="index.js"></script>
+	</body>
+</html>
