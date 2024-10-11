@@ -69,10 +69,10 @@ function starttimer(time){
 					`
 					document.getElementById("timer1").style.color="green"
 				}
-				document.getElementById("timer1").style.color="white"
+
+				firstclick=false
 				clearInterval(timer)
 				starttimer(time-1)
-				firstclick=false
 			}
 		},10)
 	}
