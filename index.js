@@ -16,6 +16,17 @@ function starttimer(time){
 			clearInterval(timer) // 如果有，先清除舊的計時器
 		}
 
+		if(!firstclick){
+			timer1m=parseInt(document.getElementById("timer1m").value)
+			timer1s=parseInt(document.getElementById("timer1s").value)
+			timer1ms=0
+			timer2m=parseInt(document.getElementById("timer2m").value)
+			timer2s=parseInt(document.getElementById("timer2s").value)
+			timer2ms=0
+
+			firstclick=true
+		}
+
 		timer=setInterval(function(){
 			if(0<timer1m||0<timer1s||0<timer1ms){
 				if(timer1ms==0){
@@ -30,7 +41,7 @@ function starttimer(time){
 				}else{
 					timer1ms=timer1ms-1
 				}
-				document.getElementById("timer1").style.color="red"
+				document.getElementById("timer1").style.color="yellow"
 				document.getElementById("timer1").innerHTML=`
 					${String(timer1m).padStart(2,"0")}:${String(timer1s).padStart(2,"0")}.${String(timer1ms).padStart(2,"0")}
 				`
@@ -56,6 +67,7 @@ function starttimer(time){
 					document.getElementById("timer1").innerHTML=`
 						計時結束!
 					`
+					document.getElementById("timer1").style.color="green"
 				}
 				document.getElementById("timer1").style.color="white"
 				clearInterval(timer)
@@ -68,17 +80,6 @@ function starttimer(time){
 
 document.getElementById("start").onclick=function(){
 	if(!start){
-		if(!firstclick){
-			timer1m=parseInt(document.getElementById("timer1m").value)
-			timer1s=parseInt(document.getElementById("timer1s").value)
-			timer1ms=0
-			timer2m=parseInt(document.getElementById("timer2m").value)
-			timer2s=parseInt(document.getElementById("timer2s").value)
-			timer2ms=0
-
-			firstclick=true
-		}
-
 		starttimer(parseInt(document.getElementById("time").value))
 		document.getElementById("start").value="停止"
 		start=true
