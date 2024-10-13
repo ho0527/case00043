@@ -8,6 +8,8 @@ let timer1="0"
 let timer2="0"
 let start=false
 let firstclick=false
+let timer1end=false
+let timer2end=false
 let timer
 
 function starttimer(time){
@@ -25,6 +27,8 @@ function starttimer(time){
 			timer2ms=0
 
 			firstclick=true
+			timer1end=false
+			timer2end=false
 		}
 
 		timer=setInterval(function(){
@@ -46,6 +50,10 @@ function starttimer(time){
 					${String(timer1m).padStart(2,"0")}:${String(timer1s).padStart(2,"0")}.${String(timer1ms).padStart(2,"0")}
 				`
 			}else if(0<timer2m||0<timer2s||0<timer2ms){
+				if(!timer1end){
+					document.getElementById("sound1").play()
+					timer1end=true
+				}
 				if(timer2ms==0){
 					if(timer2s==0){
 						timer2m=timer2m-1
@@ -63,16 +71,28 @@ function starttimer(time){
 					${String(timer2m).padStart(2,"0")}:${String(timer2s).padStart(2,"0")}.${String(timer2ms).padStart(2,"0")}
 				`
 			}else{
+				if(!timer2end){
+					document.getElementById("sound2").play()
+					timer2end=true
+				}
+
 				if(time-1<=0){
 					document.getElementById("timer1").innerHTML=`
 						計時結束!
 					`
 					document.getElementById("timer1").style.color="green"
+					firstclick=false
+					clearInterval(timer)
+					document.getElementById("start").value="開始"
+					start=false
+				}else{
+					setTimeout(function(){
+						firstclick=false
+						clearInterval(timer)
+						starttimer(time-1)
+					},9000)
 				}
 
-				firstclick=false
-				clearInterval(timer)
-				starttimer(time-1)
 			}
 		},10)
 	}
