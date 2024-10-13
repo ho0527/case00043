@@ -86,11 +86,11 @@ function starttimer(time){
 					document.getElementById("start").value="開始"
 					start=false
 				}else{
+					clearInterval(timer)
 					setTimeout(function(){
 						firstclick=false
-						clearInterval(timer)
 						starttimer(time-1)
-					},9000)
+					},9500)
 				}
 
 			}
